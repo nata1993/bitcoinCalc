@@ -1,9 +1,34 @@
 const express = require('express');
 const axios = require('axios');
 const bParser = require('body-parser');
+const ejs = require('ejs');
 const app = express();
 
-app.use(bParser.urlencoded({extended: true}));
+// v3
+
+app.set('view engine', ejs);
+
+app.get('/date', (req, res) => {
+    let today = new Date();
+    let day = '';
+    if (today.getDay() === 6 || 
+        today.getDay() === 0 )
+    {
+        day = "weekend!";
+    }
+    else {
+        day = "weekday...";
+    }
+
+    res.render('index.ejs', {kindOfDay: day});
+});
+
+app.listen(5050, () => {
+    console.log("server is running on port 5050");
+});
+
+// v2
+/*app.use(bParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) =>{
     res.sendFile(__dirname + '/index.html');
@@ -34,8 +59,10 @@ app.post('/', (req, res) =>{
     .catch(function(error){
         console.log(error)
     });
-});
+});*/
 
+
+// v1
 /*app.get('/eCoin', (req, res) =>{
     let url= 'https://api.coindesk.com/v1/bpi/currentprice/eur.json';
     let rate = "";
