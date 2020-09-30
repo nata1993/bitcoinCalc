@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>What day is it today</title>
 </head>
 <body>
-    <h1>what day is today?</h1>
-    <p><%= kindOfDay %></p>
+    <th><h1>what day is today?</h1></th>
+    <td>
+        <% if(kindOfDay === "weekday...") { %>  <!-- equal sign is not here cause its JS here-->
+            <h1 style="color: red"> <%= kindOfDay %></h1> <!-- equal sign must be when parameter is used-->
+        <% } else { %>
+            <h1 style="color: green"> <%= kindOfDay %></h1>
+        <% } %>
+    </td>
+    <th><h1>Who?</h1></th>
+    <td><p><%= person.firstName %></p></td>
+    <th><h1>Of?</h1></th>
+    <td><p><%= person.lastName %></p></td>
+    <th><h1>Age?</h1></th>
+    <td><p><%= person.age %></p></td>
+    <th><h1>Job?</h1></th>
+    <td><p><%= person.job %></p></td>
 </body>
 </html>

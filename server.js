@@ -6,11 +6,19 @@ const app = express();
 
 // v3
 
+app.use(express.static("public"));  // external files are used in this folder
 app.set('view engine', ejs);
 
 app.get('/date', (req, res) => {
     let today = new Date();
     let day = '';
+    let personData= {
+        firstName: "John",
+        lastName: "Biggus Dickus",
+        age: 25,
+        job: "Developer"
+    };
+
     if (today.getDay() === 6 || 
         today.getDay() === 0 )
     {
@@ -20,7 +28,10 @@ app.get('/date', (req, res) => {
         day = "weekday...";
     }
 
-    res.render('index.ejs', {kindOfDay: day});
+    res.render('index.ejs', {
+        kindOfDay: day,
+        person: personData
+    });
 });
 
 app.listen(5050, () => {
